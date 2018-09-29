@@ -23,7 +23,7 @@ wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add
 sudo apt-get install apt-transport-https
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 
-aptitude install plexmediaserver resilio-sync variety sublime-text-3 apache2 php7.0 libapache2-mod-php7.0 php7.0-mysql php7.0-curl php7.0-json php7.0-cgi phpmyadmin php-gd php-mbstring php-mcrypt php-xml php-xmlrpc fortune arp-scan
+aptitude install plexmediaserver resilio-sync git variety sublime-text-3 apache2 php7.0 libapache2-mod-php7.0 php7.0-mysql php7.0-curl php7.0-json php7.0-cgi php-gd php-mbstring php-mcrypt php-xml php-xmlrpc fortune arp-scan
 
 
 ## configure apache
@@ -39,7 +39,7 @@ sudo systemctl restart apache2
 
 aptitude install mysql-server
 ##modificar editor de texto padrão
-##sudo update-alternatives --config editor
+sudo update-alternatives --config editor
 
 ## mysql workbench known-hosts:
 ##C:\Users\%USERPROFILE%\AppData\Roaming\MySQL\Workbench\ssh
@@ -54,3 +54,4 @@ aptitude install mysql-server
 ## /etc/ssh/sshd_config -> PermitRootLogin yes -> service ssh reload
 ##enviar chave de autenticação
 
+sudo aptitude install phpmyadmin 
