@@ -1,6 +1,7 @@
 apt-get install openssh-server -y
 aptitude
 
+
 aptitude install vim xdotool ruby curl -y
 
 gem install rmate
@@ -25,6 +26,7 @@ sudo apt-get install apt-transport-https
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 
 aptitude install plexmediaserver resilio-sync git variety sublime-text-3 apache2 php7.0 libapache2-mod-php7.0 php7.0-mysql php7.0-curl php7.0-json php7.0-cgi php-gd php-mbstring php-mcrypt php-xml php-xmlrpc fortune arp-scan
+git clone https://github.com/synini/scripts.git 
 
 
 ## configure apache
@@ -56,3 +58,10 @@ sudo update-alternatives --config editor
 ##enviar chave de autenticação
 
 sudo aptitude install phpmyadmin 
+
+
+##rename network interfaces
+## /etc/udev/rules.d/70-my-net-names.rules
+## SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="mac addres", NAME="interfacename"
+## SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="00:e0:4c:0d:cb:6a", NAME="eth0"
+## SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="1c:65:9d:0d:92:6e", NAME="wlan0"
