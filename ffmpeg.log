@@ -1,0 +1,17 @@
+ //vídeo que funcionou
+ ffmpeg -f x11grab -video_size 1366x768 -framerate 30 -i :0.0 -f pulse -ac 1 -i alsa_output.pci-0000_00_1b.0.analog-stereo.monitor -map 0 -vcodec libx264 -tune film -acodec aac -strict experimental -b:v 320k -b:a 192k -pix_fmt yuv420p -shortest -vf scale=640:360 arquivo.mp4
+
+
+//áudio que funcionou
+ffmpeg -f alsa -i hw:0 -tune film -acodec aac -strict experimental   out.mp4
+
+//funcionou captura da câmera com áudio
+ffmpeg -f video4linux2 -s 320x240 -i /dev/video0 -f alsa -ac 1 -i hw:0 -acodec libmp3lame -ab 96k -async 1 camera.mp4
+
+
+//teste com vídeo e áudio
+ffmpeg -f x11grab -video_size 1366x768 -framerate 30 -i :0.0 -f alsa -i hw:0 -tune film -acodec aac -strict experimental -map 0 -vcodec libx264 -b:v 320k -b:a 128k -pix_fmt yuv420p -shortest -vf scale=640:360 arquivo.mp4
+
+
+/funcionou
+ffmpeg -video_size 1366x768 -framerate 25 -f x11grab -i :0.0+0,0 -f alsa -ac 2 -i pulse -acodec aac -strict experimental output.mp4
