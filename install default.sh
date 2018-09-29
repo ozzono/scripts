@@ -6,6 +6,7 @@ aptitude install vim xdotool ruby curl -y
 gem install rmate
 
 mkdir /root/.ssh
+sudo passwd root
 
 ##adding plex
 echo deb https://downloads.plex.tv/repo/deb ./public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list
