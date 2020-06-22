@@ -5,3 +5,7 @@ The following command installs a iso file to the usb drive with command line:
 
 Starts a detached screen:
 ```screen -dmS <scree-name> bash -c '<screen-command>'```
+
+Records the screen with ffmpeg:
+left screen ```ffmpeg -f x11grab -video_size 1366x768 -framerate 25 -i :0.0+0,0 output.mp4```
+right screen ```ffmpeg -f x11grab -video_size 1366x768 -framerate 25 -i :0.0+1366,0 output.mp4```
