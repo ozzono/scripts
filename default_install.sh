@@ -1,73 +1,17 @@
-sudo apt-get install aptitude -y
+#/bin/bash
 
-## default package install
-sudo aptitude install \
-    openssh-server \
-    snapd \
-    screen \
-    tmux \
-    vim \
-    gnome-tweaks \
-    chrome-gnome-shell \
-    ffmpeg \
-    members \
-    qemu-kvm \
-    curl \
-    net-tools \
-    git \
-    xclip \
-    fortune \
-    apr-scan \
-    -y
-
-##modificar editor de texto padrão
-sudo update-alternatives --config editor
-
-## adding rmate
-aptitude install vim xdotool ruby curl -y
-gem install rmate
-mkdir /root/.ssh
-sudo passwd root
-
-## adding sync
-echo "deb http://linux-packages.resilio.com/resilio-sync/deb resilio-sync non-free" | sudo tee /etc/apt/sources.list.d/resilio-sync.list
-wget -qO - https://linux-packages.resilio.com/resilio-sync/key.asc | sudo apt-key add -
-
-## adding variety
-sudo add-apt-repository ppa:peterlevi/ppa
-
-aptitude apache2 php7.0 libapache2-mod-php7.0 php7.0-mysql php7.0-curl php7.0-json php7.0-cgi php-gd php-mbstring php-mcrypt php-xml php-xmlrpc fortune arp-scan
+## all apt repositories packages
+sudo apt-get update;
+sudo apt-get install aptitude -y;
+sudo aptitude install openssh-server snapd screen tmux vim gnome-tweaks chrome-gnome-shell ffmpeg members qemu-kvm curl net-tools git xclip fortune -y;
 
 
-## configure apache
-sudo a2dismod mpm_event
-sudo a2enmod mpm_prefork
-sudo systemctl restart apache2
+## all snap packages
+sudo snap install node --channel=12/stable --classic;
+sudo snap install code --classic;
+sudo snap install android-studio --classic;
+sudo snap install go --classic
+sudo aptitude upgrade -y;
 
-## configure php
-sudo mkdir /var/log/php
-sudo chown www-data /var/log/php
-sudo subl /etc/apache2/mods-enabled/dir.conf
-sudo systemctl restart apache2
-
-
-aptitude install mysql-server
-## mysql workbench known-hosts:
-##C:\Users\%USERPROFILE%\AppData\Roaming\MySQL\Workbench\ssh
-## mysql -u root -p
-## CREATE USER 'novousuario'@'localhost' IDENTIFIED BY 'password';
-## GRANT ALL PRIVILEGES ON * . * TO 'novousuario'@'localhost';
-## FLUSH PRIVILEGES;
-
-##habilitar compartilhamento de pastas - samba
-
-## criar senha para root
-## /etc/ssh/sshd_config -> PermitRootLogin yes -> service ssh reload
-##enviar chave de autenticação
-
-sudo aptitude install phpmyadmin 
-##rename network interfaces
-## /etc/udev/rules.d/70-my-net-names.rules
-## SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="mac addres", NAME="interfacename"
-## SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="00:e0:4c:0d:cb:6a", NAME="eth0"
-## SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="1c:65:9d:0d:92:6e", NAME="wlan0"
+## install vue
+npm install -g --scripts-prepend-node-path @vue/cli
