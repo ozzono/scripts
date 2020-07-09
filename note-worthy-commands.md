@@ -11,3 +11,6 @@ Records the screen with ffmpeg:
     * ```ffmpeg -f x11grab -video_size 1366x768 -framerate 25 -i :0.0+0,0 output.mp4```
 * right screen
     * ```ffmpeg -f x11grab -video_size 1366x768 -framerate 25 -i :0.0+1366,0 output.mp4```
+
+ssh-copy-id installs an SSH key on a server as an authorized key:
+> ```ssh-copy-id -i ~/.ssh/mykey user@host```
