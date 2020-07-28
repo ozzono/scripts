@@ -1,8 +1,7 @@
 #/bin/bash
 
 ## all apt repositories packages
-sudo apt-get update;
-sudo apt-get install aptitude -y;
+sudo apt-get update && sudo apt-get install aptitude -y;
 sudo aptitude install openssh-server snapd screen tmux vim ffmpeg members qemu-kvm curl net-tools git xclip fortune -y;
 
 ## if configuring personal workstation
