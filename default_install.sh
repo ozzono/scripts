@@ -1,9 +1,11 @@
 #/bin/bash
 
 ## all apt repositories packages
-sudo apt-get update;
-sudo apt-get install aptitude -y;
-sudo aptitude install openssh-server snapd screen tmux vim gnome-tweaks chrome-gnome-shell ffmpeg members qemu-kvm curl net-tools git xclip fortune -y;
+sudo apt-get update && sudo apt-get install aptitude -y;
+sudo aptitude install openssh-server snapd screen tmux vim ffmpeg members qemu-kvm curl net-tools git xclip fortune -y;
+
+## if configuring personal workstation
+sudo aptitude install gnome-tweaks chrome-gnome-shell -y;
 
 
 ## all snap packages
