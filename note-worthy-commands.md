@@ -14,3 +14,6 @@ Records the screen with ffmpeg:
 
 ssh-copy-id installs an SSH key on a server as an authorized key:
 > ```ssh-copy-id -i ~/.ssh/mykey user@host```
+
+List all activities from a given apk:
+>aapt dump badging <pulledfile.apk>
