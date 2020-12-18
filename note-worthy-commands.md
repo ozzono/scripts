@@ -14,3 +14,17 @@ Records the screen with ffmpeg:
 
 ssh-copy-id installs an SSH key on a server as an authorized key:
 > ```ssh-copy-id -i ~/.ssh/mykey user@host```
+
+List all activities from a given apk:
+>aapt dump badging <pulledfile.apk>
+
+
+### Docker post-install
+After facing some difficulties to run docker as non-root I needed to run the following commands:
+> sudo groupadd docker
+
+> sudo usermod -aG docker $USER
+
+Yet still, docker was requiring root permissions, so I've found the following command that fixed my problem:
+
+> sudo setfacl -m user:$USER:rw /var/run/docker.sock
