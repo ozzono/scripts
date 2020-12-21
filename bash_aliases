@@ -38,4 +38,4 @@ alias dockerply-mysql="dockerply-up && docker stop rabbitmq redis mongo && docke
 alias dockerply-supply="dockerply-restart && sleep 5 && supply-start"
 alias docker-ls="docker ps --format 'table {{.ID}}\t{{.Names}}\t{{.Status}}'"
 alias ripcord="screen -dmS ripcord bash -c \"$HOME/Tools/ripcord\""
-alias rcommit="git commit -m'random commit: $(fortune)'"
+alias rcommit="git commit -m'random commit: \"$(fortune)\"'"
