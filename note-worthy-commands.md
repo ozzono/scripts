@@ -28,3 +28,6 @@ After facing some difficulties to run docker as non-root I needed to run the fol
 Yet still, docker was requiring root permissions, so I've found the following command that fixed my problem:
 
 > sudo setfacl -m user:$USER:rw /var/run/docker.sock
+
+Changes terminal default text editor:
+> sudo update-alternatives --config editor
