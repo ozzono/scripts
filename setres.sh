@@ -4,9 +4,8 @@
 # cvt 1920 1080 60
 # xrandr -q lists available video outputs
 
-output=$(xrandr -q|grep 1920x10180_60.00|wc -l)
-
-if [[ $output -eq "1" ]]; then
+output=$(xrandr -q|grep 1920x1080_60.00|wc -l)
+if [[ $(xrandr -q|grep 1920x1080_60.00|wc -l) -eq "1" ]]; then
     echo "screen already configured"
     exit 1
 fi
