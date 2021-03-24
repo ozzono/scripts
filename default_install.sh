@@ -2,10 +2,9 @@
 
 ## all apt repositories packages
 sudo apt-get update && sudo apt-get install aptitude -y;
-sudo aptitude install openssh-server snapd screen tmux vim ffmpeg members qemu-kvm curl net-tools git xclip fortune -y;
+sudo aptitude install openssh-server snapd screen tmux vim ffmpeg members qemu-kvm curl net-tools git xclip fortune gnome-tweaks chrome-gnome-shell build-essentials -y;
 
 ## if configuring personal workstation
-sudo aptitude install gnome-tweaks chrome-gnome-shell -y;
 
 
 ## all snap packages
@@ -16,4 +15,4 @@ sudo snap install go --classic
 sudo aptitude upgrade -y;
 
 ## install vue
-npm install -g --scripts-prepend-node-path @vue/cli
+npm install -g @vue/cli --scripts-prepend-node-path
