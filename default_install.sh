@@ -9,7 +9,7 @@ sudo aptitude install gnome-tweaks chrome-gnome-shell -y;
 
 
 ## all snap packages
-sudo snap install node --channel=12/stable --classic;
+sudo snap install node --classic;
 sudo snap install code --classic;
 sudo snap install android-studio --classic;
 sudo snap install go --classic
