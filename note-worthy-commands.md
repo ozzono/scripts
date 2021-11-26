@@ -40,5 +40,5 @@ Disable Suspend and Hibernation in Linux
 ## Fixing adb error
 ```shell
 $ rm /usr/bin/adb
-$ ln -s /home/{{username}}/Android/Sdk/platform-tools/adb /usr/bin/adb Fastest way to fix the issue
+$ ln -s $HOME/Android/Sdk/platform-tools/adb /usr/bin/adb 
 ```
