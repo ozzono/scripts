@@ -35,3 +35,10 @@ Changes terminal default text editor:
 Disable Suspend and Hibernation in Linux
 [ref](https://www.tecmint.com/disable-suspend-and-hibernation-in-linux/)  
 > `sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target`
+
+ 
+## Fixing adb error
+```shell
+$ rm /usr/bin/adb
+$ ln -s /home/{{username}}/Android/Sdk/platform-tools/adb /usr/bin/adb Fastest way to fix the issue
+```
