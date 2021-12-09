@@ -65,9 +65,11 @@ ln -s $HOME/Android/Sdk/platform-tools/adb /usr/bin/adb
  
  ## `cd` command redirects to VSCode Workspace Root directory
  Add below line to `settings.json`
- >     "terminal.integrated.env.linux":  {"VSCODE_WS": "${workspaceFolder}"}
+```json     "terminal.integrated.env.linux":  {"VSCODE_WS": "${workspaceFolder}"}
+```
 Add below code to $HOME/.bashrc
- ```shell
+ 
+```shell
 if [[ -v VSCODE_WS ]] && [[ "$VSCODE_WS" != '${workspaceFolder}' ]]; then
     alias cd="HOME=\"${VSCODE_WS}\" cd"
 fi```
