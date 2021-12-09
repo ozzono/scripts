@@ -65,7 +65,8 @@ ln -s $HOME/Android/Sdk/platform-tools/adb /usr/bin/adb
  
  ## `cd` command redirects to VSCode Workspace Root directory
  Add below line to `settings.json`
-```json     "terminal.integrated.env.linux":  {"VSCODE_WS": "${workspaceFolder}"}
+```json
+   "terminal.integrated.env.linux":  {"VSCODE_WS": "${workspaceFolder}"}
 ```
 Add below code to $HOME/.bashrc
  
