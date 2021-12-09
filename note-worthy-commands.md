@@ -62,3 +62,12 @@ ln -s $HOME/Android/Sdk/platform-tools/adb /usr/bin/adb
  
  ## git log customization
  > $ git log --pretty=format:'%C(blue)%h %C(green)%cr %C(cyan)%cn %C(red)%d%C(white)%s'
+ 
+ ## `cd` command redirects to VSCode Workspace Root directory
+ Add below line to `settings.json`
+ >     "terminal.integrated.env.linux":  {"VSCODE_WS": "${workspaceFolder}"}
+Add below code to $HOME/.bashrc
+ ```shell
+if [[ -v VSCODE_WS ]] && [[ "$VSCODE_WS" != '${workspaceFolder}' ]]; then
+    alias cd="HOME=\"${VSCODE_WS}\" cd"
+fi```
