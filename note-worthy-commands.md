@@ -59,3 +59,6 @@ export PS1="\u@\h \[\e[32m\]\w \[\e[91m\]\$(parse_git_branch)\[\e[00m\]$ \n"
 rm /usr/bin/adb
 ln -s $HOME/Android/Sdk/platform-tools/adb /usr/bin/adb 
 ```
+ 
+ ## git log customization
+ > $ git log --pretty=format:'%C(blue)%h %C(green)%cr %C(cyan)%cn %C(red)%d%C(white)%s'
