@@ -12,7 +12,7 @@ alias rbind="bind '\"\e[A\":history-search-backward' && bind '\"\e[B\":history-s
 alias realias="code $HOME/.bash_aliases"
 alias home-server="ssh home@192.168.1.50"
 alias rasp="sudo $HOME/scripts/sshtomac.sh pi DC:A6:32:53:B9:2F $HOME"
-alias miner="sudo $HOME/scripts/sshtomac.sh miner 84:7B:EB:F9:C8:5C $HOME"
+alias hidden="sudo $HOME/scripts/sshtomac.sh rakuten 84:7B:EB:F9:C8:5C $HOME 2222"
 alias lsdisk='lsblk -o name,mountpoint,label,size,fstype,uuid | egrep -v "^loop"'
 alias kscreen="screen -XS $1 kill"
 alias anbox-launch="screen -dmS anbox bash -c 'anbox launch --package=org.anbox.appmgr --component=org.anbox.appmgr.AppViewActivity'"
