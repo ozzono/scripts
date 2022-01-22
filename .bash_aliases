@@ -37,6 +37,3 @@ alias dockerply-restart="dockerply-down && dockerply-up"
 alias dockerply-mysql="dockerply-up && docker stop rabbitmq redis mongo && docker ps -a | grep up"
 alias dockerply-supply="dockerply-restart && sleep 5 && supply-start"
 alias ripcord="screen -dmS ripcord bash -c \"$HOME/Tools/ripcord\""
-
-bind '"\e[A":history-search-backward';
-bind '"\e[B":history-search-forward';
