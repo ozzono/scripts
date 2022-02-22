@@ -1,3 +1,8 @@
+# unused
+# alias upbright="xdotool key XF86MonBrightnessUp"
+# alias downbright="xdotool key XF86MonBrightnessDown"
+
+
 foxkill(){
     f=$(pidof firefox)
     if [[ -z "$f"  ]]; then
@@ -54,4 +59,5 @@ alias amke="make"
 alias maek="make"
 alias cd..="cd .."
 alias dfh='df -h | grep -v "loop"'
-alias cl="clear && clear"
+alias cl="clear && clear && fortune"
+
