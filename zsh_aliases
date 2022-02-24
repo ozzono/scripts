@@ -39,7 +39,7 @@ alias cdscripts="cd $HOME/scripts"
 alias cdprojects="cd $HOME/Projects"
 alias go-snippets="cd $HOME/Projects/snippets/go-snippets"
 alias rbind="bind '\"\e[A\":history-search-backward' && bind '\"\e[B\":history-search-forward'"
-alias realias="code $HOME/.bash_aliases"
+alias realias="code $HOME/.zsh_aliases"
 alias home-server="ssh home@192.168.1.50"
 alias dev-server="ssh dev@192.168.1.50"
 alias lsdisk='lsblk -o name,mountpoint,label,size,fstype,uuid | egrep -v "^loop"'
@@ -61,4 +61,7 @@ alias maek="make"
 alias cd..="cd .."
 alias dfh='df -h | grep -v "loop"'
 alias cl="clear && clear && fortune"
+
 alias ls="ls --color=auto"
+alias grep="grep --color=auto"
+alias g="git"
