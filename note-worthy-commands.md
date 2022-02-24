@@ -59,18 +59,36 @@ export PS1="\u@\h \[\e[32m\]\w \[\e[91m\]\$(parse_git_branch)\[\e[00m\]$ \n"
 rm /usr/bin/adb
 ln -s $HOME/Android/Sdk/platform-tools/adb /usr/bin/adb 
 ```
- 
- ## git log customization
+
+## git log customization
+
  > $ git log --pretty=format:'%C(blue)%h %C(green)%cr %C(cyan)%cn %C(red)%d%C(white)%s'
- 
- ## `cd` command redirects to VSCode Workspace Root directory
+
+## `cd` command redirects to VSCode Workspace Root directory
+
  Add below line to `settings.json`
+
 ```json
    "terminal.integrated.env.linux":  {"VSCODE_WS": "${workspaceFolder}"}
 ```
+
 Add below code to $HOME/.bashrc
- 
+
 ```shell
 if [[ -v VSCODE_WS ]] && [[ "$VSCODE_WS" != '${workspaceFolder}' ]]; then
     alias cd="HOME=\"${VSCODE_WS}\" cd"
-fi```
+fi
+```
+
+## Git global config
+
+>edit file /etc/gitconfig
+
+```
+[alias]
+ alias = !git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
+ co = !git checkout $1 && git status
+ l = !git log -n 8 --pretty=format:'%C(blue)%h %C(green)%<(14)%cr %C(cyan)%<(17)%cn%C(red)%d%C(white) %s'
+ rc = !git commit -m \"Fortune Commit: "$(fortune)\""
+
+```
