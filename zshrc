@@ -4,19 +4,47 @@ autoload -Uz promptinit
 promptinit
 prompt adam1
 
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+
 setopt histignorealldups sharehistory
+setopt NO_CASE_GLOB
+setopt GLOB_COMPLETE
+setopt AUTO_CD
+setopt EXTENDED_HISTORY
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
+
+# expire duplicates first
+setopt HIST_EXPIRE_DUPS_FIRST 
+# do not store duplications
+setopt HIST_IGNORE_DUPS
+# ignore duplicates when searching
+setopt HIST_FIND_NO_DUPS
+# removes blank lines from history
+setopt HIST_REDUCE_BLANKS
 
 # Use emacs keybindings even if our EDITOR is set to vi
 # bindkey -e
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=1000
-SAVEHIST=1000
+SAVEHIST=5000
+HISTSIZE=2000
 HISTFILE=~/.zsh_history
 
 # Use modern completion system
 autoload -Uz compinit
 compinit
+
+# load bashcompinit for some old bash completions
+autoload bashcompinit && bashcompinit
+[[ -r ~/.autopkg_complete/autopkg ]] && source ~/.autopkg_complete/autopkg
+
+# partial completion suggestions
+zstyle ':completion:*' list-suffixeszstyle ':completion:*' expand prefix suffix
+
+# case insensitive path-completion
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
@@ -43,5 +71,7 @@ if [ -f ~/.zsh_aliases ]; then
 fi
 
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$HOME/.flutter/bin
+export PATH=$PATH:$HOME/.cmdline-tools/bin
 
 $HOME/scripts/sshfs.sh home@192.168.1.50
