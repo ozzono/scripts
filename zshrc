@@ -6,6 +6,8 @@ prompt adam1
 
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
 
 setopt histignorealldups sharehistory
 setopt NO_CASE_GLOB
