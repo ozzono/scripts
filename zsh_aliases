@@ -30,8 +30,9 @@ dockkill(){
     fi
 }
 
+# utilities for the lazy
 alias rset="source $HOME/.zshrc"
-alias suuu="screen -dmS suuu bash -c 'clear && clear && sudo apt-fast update && sudo apt-fast upgrade -y && sudo $HOME/scripts/clean_snap.sh && exit' screen -r suuu"
+alias suuu="screen -dmS suuu bash -c 'clear && clear && sudo apt-fast update && sudo apt-fast upgrade -y && sudo $HOME/scripts/clean_snap.sh && exit' && screen -r suuu"
 alias psef="ps -ef |grep $1"
 alias cdscripts="cd $HOME/scripts"
 alias cdprojects="cd $HOME/Projects"
@@ -43,17 +44,22 @@ alias dev-server="ssh dev@192.168.1.50"
 alias lsdisk='lsblk -o name,mountpoint,label,size,fstype,uuid | egrep -v "^loop|zram"'
 alias kscreen="screen -XS $1 quit"
 alias vetest="go vet ./... && go test -v"
-
 alias custom-date='date +"%Y-%m-%d %H:%M:%S"'
-alias ifconf="ifconfig wlp1s0"
 alias dcc="docker-compose"
+alias ifconf="ifconfig wlp1s0"
+alias newtab="terminator --new-tab && exit"
+alias c="xclip -selection clipboard"
+alias refresh-corners="gnome-extensions disable custom-hot-corners@janrunx.gmail.com && gnome-extensions enable custom-hot-corners@janrunx.gmail.com"
+
+# typo avoidance
 alias mkae="make"
 alias amke="make"
 alias maek="make"
 alias cd..="cd .."
 alias dfh='df -h | grep -v "loop"'
-alias cl="clear && clear && fortune"
 
+# general utilities
+alias cl="clear && clear && fortune"
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
 alias g="git"

@@ -50,7 +50,7 @@ zstyle ':completion:*' list-suffixeszstyle ':completion:*' expand prefix suffix
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 
 zstyle ':completion:*' auto-description 'specify: %d'
-zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*' completer _expand _complete _correct
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
@@ -67,12 +67,13 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
+echo "\n"
 if [ -f ~/.zsh_aliases ]; then
-    echo $(date +"%Y-%m-%d %H:%M:%S") "loading aliases"
+    echo $(custom-date) "loading aliases"
     . ~/.zsh_aliases
 fi
 
 if [ -f ~/.zsh_custom ]; then
-    echo $(date +"%Y-%m-%d %H:%M:%S") "loading customizations"
+    echo $(custom-date) "loading customizations"
     . ~/.zsh_custom
 fi
