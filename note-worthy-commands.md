@@ -97,3 +97,6 @@ fi
 $ dconf dump / > dconf-settings.ini # exports on use gnome profile settings
 $ dconf load / < dconf-settings.ini # imports gnome profile settings from file
 ```
+
+## gnome extensions enable/disable command
+> gnome-extensions enable $(gnome-extensions list|grep corner)  

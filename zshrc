@@ -4,6 +4,7 @@ autoload -Uz promptinit
 promptinit
 prompt adam1
 
+setopt histignorealldups sharehistory
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 bindkey "^[[1;5C" forward-word
@@ -66,14 +67,12 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-
-
 if [ -f ~/.zsh_aliases ]; then
+    echo $(date +"%Y-%m-%d %H:%M:%S") "loading aliases"
     . ~/.zsh_aliases
 fi
 
-export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:$HOME/.flutter/bin
-export PATH=$PATH:$HOME/.cmdline-tools/bin
-
-$HOME/scripts/sshfs.sh home@192.168.1.50
+if [ -f ~/.zsh_custom ]; then
+    echo $(date +"%Y-%m-%d %H:%M:%S") "loading customizations"
+    . ~/.zsh_custom
+fi

@@ -33,8 +33,6 @@ dockkill(){
 alias rset="source $HOME/.zshrc"
 alias suuu="screen -dmS suuu bash -c 'clear && clear && sudo apt-fast update && sudo apt-fast upgrade -y && sudo $HOME/scripts/clean_snap.sh && exit' screen -r suuu"
 alias psef="ps -ef |grep $1"
-alias vueui="$HOME/scripts/vueui.sh"
-alias cdnotes="cd $HOME/Projects/notes"
 alias cdscripts="cd $HOME/scripts"
 alias cdprojects="cd $HOME/Projects"
 alias go-snippets="cd $HOME/Projects/snippets/go-snippets"
@@ -42,17 +40,11 @@ alias rbind="bind '\"\e[A\":history-search-backward' && bind '\"\e[B\":history-s
 alias realias="code $HOME/.zsh_aliases"
 alias home-server="ssh home@192.168.1.50"
 alias dev-server="ssh dev@192.168.1.50"
-alias lsdisk='lsblk -o name,mountpoint,label,size,fstype,uuid | egrep -v "^loop"'
-alias gocmd="go run /home/hugo/Projects/snippets/go-snippets/gocmd.go"
+alias lsdisk='lsblk -o name,mountpoint,label,size,fstype,uuid | egrep -v "^loop|zram"'
 alias kscreen="screen -XS $1 quit"
-alias anbox-launch="screen -dmS anbox bash -c 'anbox launch --package=org.anbox.appmgr --component=org.anbox.appmgr.AppViewActivity'"
-alias anbox-kill="sudo snap restart anbox"
-alias lite-avd="screen -dmS lite-avd bash -c '/home/hugo/Android/Sdk/emulator/emulator -avd lite'"
-alias lite-avd-kill="screen -X -s lite-avd kill"
 alias vetest="go vet ./... && go test -v"
-alias xml2tap="go run $HOME/Projects/snippets/go-snippets/xml2tap.go"
-alias codei="code-insiders"
 
+alias custom-date='date +"%Y-%m-%d %H:%M:%S"'
 alias ifconf="ifconfig wlp1s0"
 alias dcc="docker-compose"
 alias mkae="make"
@@ -68,3 +60,17 @@ alias g="git"
 alias brightup="xdotool key XF86MonBrightnessUp"
 alias brightdown="xdotool key XF86MonBrightnessDown"
 alias apt="apt-fast"
+
+## unused aliases
+# alias gocmd="go run /home/hugo/Projects/snippets/go-snippets/gocmd.go"
+# alias xml2tap="go run $HOME/Projects/snippets/go-snippets/xml2tap.go"
+# alias codei="code-insiders"
+# alias anbox-launch="screen -dmS anbox bash -c 'anbox launch --package=org.anbox.appmgr --component=org.anbox.appmgr.AppViewActivity'"
+# alias anbox-kill="sudo snap restart anbox"
+# alias lite-avd="screen -dmS lite-avd bash -c '/home/hugo/Android/Sdk/emulator/emulator -avd lite'"
+# alias lite-avd-kill="screen -X -s lite-avd kill"
+
+if [ -f ~/.zsh_specific_aliases ]; then
+    echo $(date +"%Y-%m-%d %H:%M:%S") "loading specific aliases"
+    . ~/.zsh_specific_aliases
+fi
