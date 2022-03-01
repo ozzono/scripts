@@ -39,6 +39,7 @@ alias cdprojects="cd $HOME/Projects"
 alias go-snippets="cd $HOME/Projects/snippets/go-snippets"
 alias rbind="bind '\"\e[A\":history-search-backward' && bind '\"\e[B\":history-search-forward'"
 alias realias="code $HOME/.zsh_aliases"
+alias realias_custom="code $HOME/.zsh_specific_aliases"
 alias home-server="ssh home@192.168.1.50"
 alias dev-server="ssh dev@192.168.1.50"
 alias lsdisk='lsblk -o name,mountpoint,label,size,fstype,uuid | egrep -v "^loop|zram"'
