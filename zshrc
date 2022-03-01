@@ -36,10 +36,11 @@ precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
 
 # Enable substitution in the prompt.
+bullet="● "
 
-zstyle ':vcs_info:*' stagedstr '● ' 
-zstyle ':vcs_info:*' unstagedstr '● ' 
-zstyle ':vcs_info:*' unmergedstr '● ' 
+zstyle ':vcs_info:*' stagedstr $bullet
+zstyle ':vcs_info:*' unstagedstr $bullet
+zstyle ':vcs_info:*' unmergedstr $bullet
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' actionformats '%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f'
 zstyle ':vcs_info:*' formats '%F{5}%F{2}branch:%b%F{5} %F{2}%c%F{3}%u%f'
