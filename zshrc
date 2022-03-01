@@ -54,7 +54,7 @@ zstyle ':vcs_info:*' enable git
 }
 
 precmd () { vcs_info }
-PROMPT='%F{5}$fg[blue]%}%n@%m %F{3}%3~ $fg[green]${vcs_info_msg_0_} %# '
+PROMPT='%F{5}$fg[blue]%}%n@%m %F{3}%3~ $fg[green]${vcs_info_msg_0_} %#'
 
 zstyle ':omz:update' mode reminder
 ZSH_DISABLE_COMPFIX=true
