@@ -30,6 +30,9 @@ compinit
 bindkey '^[OA' up-line-or-search                                                
 bindkey '^[OB' down-line-or-search
 
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
