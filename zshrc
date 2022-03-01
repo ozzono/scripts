@@ -13,19 +13,22 @@ setopt HIST_FIND_NO_DUPS
 # removes blank lines from history
 setopt HIST_REDUCE_BLANKS
 
+setopt histignorealldups sharehistory
+setopt NO_CASE_GLOB
+setopt GLOB_COMPLETE
+setopt AUTO_CD
+setopt EXTENDED_HISTORY
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
+
 autoload -U colors
 colors
 
 autoload -Uz compinit
 compinit
-# Enabling and setting git info var to be used in prompt config.
-# autoload -Uz vcs_info
-# zstyle ':vcs_info:*' enable git svn
-# # This line obtains information from the vcs.
-# zstyle ':vcs_info:git*' formats "%b"
-# precmd() {
-#     vcs_info
-# }
+
+bindkey '^[OA' up-line-or-search                                                
+bindkey '^[OB' down-line-or-search
 
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
@@ -40,7 +43,7 @@ zstyle ':vcs_info:*' unmergedstr '●'
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' actionformats '%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
 zstyle ':vcs_info:*' formats \
-  '%F{5}%F{2}%b%F{5} %F{2}%c%F{3}%u%f'
+  '%F{5}%F{2}branch:%b%F{5} %F{2}%c%F{3}%u%f'
 zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 zstyle ':vcs_info:*' enable git 
 +vi-git-untracked() {
@@ -49,7 +52,6 @@ zstyle ':vcs_info:*' enable git
             hook_com[unstaged]+='%F{1}●%f'
     fi
 }
-
 
 precmd () { vcs_info }
 PROMPT='%F{5}$fg[blue]%}%n@%m %F{3}%3~ $fg[green]${vcs_info_msg_0_} %# '
@@ -62,7 +64,6 @@ HIST_STAMPS="yyyy.mm.dd"
 
 eval "$(dircolors -b)"
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-
 
 echo "\t"
 if [ -f ~/.zsh_aliases ]; then
