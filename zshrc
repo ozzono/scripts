@@ -1,6 +1,6 @@
 # Set up the prompt
 
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
+# history config
 SAVEHIST=5000
 HISTSIZE=2000
 HISTFILE=~/.zsh_history
@@ -27,12 +27,15 @@ colors
 autoload -Uz compinit
 compinit
 
+# up-arrow complete
 bindkey '^[OA' up-line-or-search                                                
 bindkey '^[OB' down-line-or-search
 
+# ctrl+left or ctrl-right word hop
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
+# git branch exhibition config
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
