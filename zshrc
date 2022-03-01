@@ -37,13 +37,12 @@ setopt prompt_subst
 
 # Enable substitution in the prompt.
 
-zstyle ':vcs_info:*' stagedstr '●' 
-zstyle ':vcs_info:*' unstagedstr '●' 
-zstyle ':vcs_info:*' unmergedstr '●' 
+zstyle ':vcs_info:*' stagedstr ' ● ' 
+zstyle ':vcs_info:*' unstagedstr ' ● ' 
+zstyle ':vcs_info:*' unmergedstr ' ● ' 
 zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' actionformats '%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
-zstyle ':vcs_info:*' formats \
-  '%F{5}%F{2}branch:%b%F{5} %F{2}%c%F{3}%u%f'
+zstyle ':vcs_info:*' actionformats '%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f'
+zstyle ':vcs_info:*' formats '%F{5}%F{2}branch:%b%F{5}%F{2}%c%F{3}%u%f'
 zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 zstyle ':vcs_info:*' enable git 
 +vi-git-untracked() {
@@ -54,13 +53,12 @@ zstyle ':vcs_info:*' enable git
 }
 
 precmd () { vcs_info }
-PROMPT='%F{5}$fg[blue]%}%n@%m %F{3}%3~ $fg[green]${vcs_info_msg_0_} %#'
+PROMPT='%F{5}$fg[blue]%}%n@%m %F{3}%3~ %F{7}${vcs_info_msg_0_}%#'$'\n'
 
 zstyle ':omz:update' mode reminder
 ZSH_DISABLE_COMPFIX=true
 COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
 HYPHEN_INSENSITIVE=true
-HIST_STAMPS="yyyy.mm.dd"
 
 eval "$(dircolors -b)"
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
