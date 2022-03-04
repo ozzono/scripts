@@ -80,3 +80,5 @@ if [ -f ~/.zsh_custom ]; then
     date +"%Y-%m-%d %H:%M:%S loading customizations"
     . ~/.zsh_custom
 fi
+
+export DISPLAY=":0.0"
