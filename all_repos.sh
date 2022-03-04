@@ -1,15 +1,24 @@
-#/bin/bash
+#!/bin/bash
 
-## all git repositories
-mkdir $HOME/Projects;
-mkdir $HOME/scripts;
-cd $HOME/Projects;
-git clone https://github.com/synini/ifbra-app.git
-git clone https://github.com/synini/adbtools.git
-git clone https://github.com/synini/go-snippets.git
+pull(){
+    repo=$1
+    here=$2
+    echo "cloning $repo"
+    git clone <repo_path>/$repo
+    echo "cloned $repo"
+    cd $here/$repo
+    echo "fetching packages"
+    go mod tidy
+    go mod download
+    echo "fetched packages"
+    cd $here
+}
 
-cd $HOME/scripts
-git clone https://github.com/synini/scripts.git
 
-cp $HOME/scripts/.bash_aliases $HOME/.
-source $HOME/.profile
+declare -A test
+test+="repo1 "
+test+="repo2 "
+
+for r in ${replist[@]}; do
+    pull "${r}" $(pwd) &
+done
