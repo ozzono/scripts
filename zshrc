@@ -70,9 +70,6 @@ HYPHEN_INSENSITIVE=true
 eval "$(dircolors -b)"
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
-# enabling constant custom corner extension refresh
-while true; do gnome-extensions disable custom-hot-corners@janrunx.gmail.com && gnome-extensions enable custom-hot-corners@janrunx.gmail.com; sleep 30; done &
-
 echo "\t"
 if [ -f ~/.zsh_aliases ]; then
     date +"%Y-%m-%d %H:%M:%S loading aliases"
