@@ -51,6 +51,7 @@ alias ifconf="ifconfig wlp1s0"
 alias newtab="terminator --new-tab && exit"
 alias c="xclip -selection clipboard"
 alias refresh-corners="gnome-extensions disable custom-hot-corners@janrunx.gmail.com && gnome-extensions enable custom-hot-corners@janrunx.gmail.com"
+alias lsnw="sudo nmap -sP -n 192.168.1.0/24"
 
 # typo avoidance
 alias mkae="make"

@@ -75,12 +75,11 @@ while true; do gnome-extensions disable custom-hot-corners@janrunx.gmail.com && 
 
 echo "\t"
 if [ -f ~/.zsh_aliases ]; then
-    echo $(date +"%Y-%m-%d %H:%M:%S") "loading aliases"
+    date +"%Y-%m-%d %H:%M:%S loading aliases"
     . ~/.zsh_aliases
 fi
 
 if [ -f ~/.zsh_custom ]; then
-    echo $(date +"%Y-%m-%d %H:%M:%S") "loading customizations"
+    date +"%Y-%m-%d %H:%M:%S loading customizations"
     . ~/.zsh_custom
 fi
-$HOME/scripts/refresh_corner.sh
