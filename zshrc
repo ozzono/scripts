@@ -87,3 +87,4 @@ fi
 
 
 export DISPLAY=":0.0"
+xhost +
