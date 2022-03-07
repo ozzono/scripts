@@ -45,7 +45,6 @@ firedock(){
     else
         echo "firedock: starting new firedock"
         docker run -it -e DISPLAY=$DISPLAY --name firedock -v /tmp/.X11-unix/:/tmp/.X11-unix --net=host -d firedock
-        # docker run -it -e DISPLAY=$DISPLAY --name firedock -v /tmp/.X11-unix:/tmp/.X11-unix --net=host -d firedock
 
     fi
 }
