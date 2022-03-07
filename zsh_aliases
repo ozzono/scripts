@@ -30,11 +30,9 @@ dockkill(){
     fi
 }
 
-
 firedock(){
-    running_foxes=$(docker ps -a --filter "status=running" |grep firefox|wc -l)
-    all_foxes=$(docker ps -a |grep firefox|wc -l)
-    compare="1"
+    running_foxes=$(docker ps -a --filter "status=running" |grep firedock|wc -l)
+    all_foxes=$(docker ps -a |grep firedock|wc -l)
 
     if [ $all_foxes = "1" ]; then
             echo "firedock: $all_foxes stance(s)"
@@ -46,8 +44,9 @@ firedock(){
         fi
     else
         echo "firedock: starting new firedock"
-        docker rm firedock
-        docker run -it -e DISPLAY=$DISPLAY --name firedock -v /tmp/.X11-unix/:/tmp/.X11-unix --net=host firefox
+        docker run -it -e DISPLAY=$DISPLAY --name firedock -v /tmp/.X11-unix/:/tmp/.X11-unix --net=host -d firedock
+        # docker run -it -e DISPLAY=$DISPLAY --name firedock -v /tmp/.X11-unix:/tmp/.X11-unix --net=host -d firedock
+
     fi
 }
 
