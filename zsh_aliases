@@ -46,6 +46,7 @@ firedock(){
         fi
     else
         echo "firedock: starting new firedock"
+        docker rm firedock
         docker run -it -e DISPLAY=$DISPLAY --name firedock -v /tmp/.X11-unix/:/tmp/.X11-unix --net=host firefox
     fi
 }
