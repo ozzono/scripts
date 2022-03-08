@@ -1,5 +1,23 @@
+rm-dangling(){
+    dangling=$(docker images -f "dangling=true" -q)
+    if [ -z "$dangling" ]
+    then
+        echo "\$rm-dangling: no zombie containers around"
+    else
+        echo "\$rm-dangling: some zombie containers around"
+        docker rmi --force $dangling
+    fi
+}
+
 foxkill(){
-    sudo kill $(pidof firefox)
+    foxes=$(pidof firefox)
+    if [ -z "$foxes" ]
+    then
+        echo "\$foxkill: no foxes walking around"
+    else
+        echo "\$foxkill: poor litle foxes"
+        sudo kill $(pidof firefox)
+    fi
 }
 
 reb(){
@@ -65,7 +83,6 @@ alias newtab="terminator --new-tab && exit"
 alias c="xclip -selection clipboard"
 alias refresh-corners="gnome-extensions disable custom-hot-corners@janrunx.gmail.com && gnome-extensions enable custom-hot-corners@janrunx.gmail.com"
 alias lsnw="sudo nmap -sP -n 192.168.1.0/24"
-alias rm-dangling="docker rmi $(docker images -f dangling=true -q)"
 
 # typo avoidance
 alias mkae="make"

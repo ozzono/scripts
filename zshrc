@@ -85,4 +85,5 @@ if [[ -v VSCODE_WS ]] && [[ "$VSCODE_WS" != '${workspaceFolder}' ]]; then
     alias cd="HOME=\"${VSCODE_WS}\" cd"
 fi
 
+export DISPLAY=":0.0"
 xhost +
