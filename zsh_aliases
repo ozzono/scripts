@@ -1,11 +1,5 @@
 foxkill(){
-    f=$(pidof firefox)
-    if [[ -z "$f"  ]]; then
-        echo "foxkill: no firefox service running"
-    else
-        echo "foxkill: killing all firefox services"
-        sudo kill $f
-    fi
+    sudo kill $(pidof firefox)
 }
 
 reb(){
@@ -55,7 +49,7 @@ alias suuu="screen -dmS suuu bash -c 'clear && clear && sudo apt-fast update && 
 alias psef="ps -ef |grep $1"
 alias cdscripts="cd $HOME/scripts"
 alias cprojects="cd $HOME/Projects"
-alias go-snippets="cd $HOME/Projects/snippets/go-snippets"
+alias go-snippets="cd $HOME/Projects/go-snippets"
 alias rbind="bind '\"\e[A\":history-search-backward' && bind '\"\e[B\":history-search-forward'"
 alias realias="code $HOME/.zsh_aliases"
 alias realias_custom="code $HOME/.zsh_specific_aliases"
@@ -70,7 +64,6 @@ alias ifconf="ifconfig wlp1s0"
 alias newtab="terminator --new-tab && exit"
 alias c="xclip -selection clipboard"
 alias refresh-corners="gnome-extensions disable custom-hot-corners@janrunx.gmail.com && gnome-extensions enable custom-hot-corners@janrunx.gmail.com"
-alias lsnw="sudo nmap -sP -n 192.168.1.0/24"
 alias lsnw="sudo nmap -sP -n 192.168.1.0/24"
 alias rm-dangling="docker rmi $(docker images -f dangling=true -q)"
 
