@@ -1,5 +1,5 @@
 rm-dangling(){
-    dangling=$(docker images -f "dangling=true" -q)
+    dangling=$(docker images -f dangling=true -q)
     if [ -z "$dangling" ]
     then
         echo "\$rm-dangling: no zombie containers around"
