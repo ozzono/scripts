@@ -85,5 +85,7 @@ if [[ -v VSCODE_WS ]] && [[ "$VSCODE_WS" != '${workspaceFolder}' ]]; then
     alias cd="HOME=\"${VSCODE_WS}\" cd"
 fi
 
+$HOME/scripts/refresh_corner.sh
+
 export DISPLAY=":0.0"
 xhost +

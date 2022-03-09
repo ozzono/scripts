@@ -5,7 +5,7 @@ rm-dangling(){
         echo "\$rm-dangling: no zombie containers around"
     else
         echo "\$rm-dangling: some zombie containers around"
-        docker rmi --force $dangling
+        docker rmi $(docker images -f dangling=true -q) --force
     fi
 }
 
@@ -22,23 +22,23 @@ foxkill(){
 
 reb(){
     dockkill
-    echo "reb: rebooting"
+    echo "\$reb: rebooting"
     sudo reboot;
 }
 
 shut(){
     dockkill
-    echo "shut: shutting down"
+    echo "\$shut: shutting down"
     sudo shutdown now -h;
 }
 
 dockkill(){
-    echo "dockkill: killing all docker containers"
-    d=$(docker ps -a -q)
+    echo "\$dockkill: killing all docker containers"
+    d=$(docker ps -a -q|grep -v "firedock")
     if [[ -z "$d"  ]]; then
-        echo "dockkill: no docker containers running"
+        echo "\$dockkill: no docker containers running"
     else
-        sudo docker stop $(docker ps -a -q) && sudo docker rm $(docker ps -a -q);
+        sudo docker stop $(docker ps -a -q|grep -v "firedock") && sudo docker rm $(docker ps -a -q|grep -v "firedock");
     fi
 }
 
@@ -47,15 +47,15 @@ firedock(){
     all_foxes=$(docker ps -a |grep firedock|wc -l)
 
     if [ $all_foxes = "1" ]; then
-            echo "firedock: $all_foxes stance(s)"
+            echo "\$firedock: $all_foxes stance(s)"
         if [ $running_foxes = "1" ]; then
-            echo "firedock: stance is already running"
+            echo "\$firedock: stance is already running"
         else
-            echo "firedock: restarting stopped firedock"
+            echo "\$firedock: restarting stopped firedock"
             docker start firedock
         fi
     else
-        echo "firedock: starting new firedock"
+        echo "\$firedock: starting new firedock"
         docker run -it -e DISPLAY=$DISPLAY --name firedock -v /tmp/.X11-unix/:/tmp/.X11-unix --net=host -d firedock
 
     fi
