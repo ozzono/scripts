@@ -87,5 +87,5 @@ fi
 
 $HOME/scripts/refresh_corner.sh
 
-export DISPLAY=":0.0"
-xhost +
+#export DISPLAY=":0.0"
+#xhost +
