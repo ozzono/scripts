@@ -90,7 +90,7 @@ alias mkae="make"
 alias amke="make"
 alias maek="make"
 alias cd..="cd .."
-alias dfh='df -h | grep -v "loop"'
+alias dfh='df -h | grep -v "loop\|SWAP"'
 
 # general utilities
 alias cl="clear && clear && fortune"
