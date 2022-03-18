@@ -86,6 +86,7 @@ if [[ -v VSCODE_WS ]] && [[ "$VSCODE_WS" != '${workspaceFolder}' ]]; then
 fi
 
 $HOME/scripts/refresh_corner.sh
+$HOME/scripts/watch-rpi.sh
 
 export DISPLAY=":0.0"
 date +"%Y-%m-%d %H:%M:%S $(xhost +)"
