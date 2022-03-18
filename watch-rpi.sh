@@ -5,7 +5,8 @@ watchpi(){
         date +"%Y-%m-%d %H:%M:%S rpi connected"
         sleep 60
     else 
-        notify-send "rpi node disconnected"
+        a=$(date +"%Y-%m-%d %H:%M:%S rpi node disconnected")
+        notify-send "$a"
         sleep 30
     fi
     done
