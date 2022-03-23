@@ -9,6 +9,10 @@ rm-dangling(){
     fi
 }
 
+yoda-unmount(){
+    mount -l -t fuse.sshfs | awk -F " " '{print "fusermount -u " $3}' | bash
+}
+
 foxkill(){
     foxes=$(pidof firefox)
     if [ -z "$foxes" ]
