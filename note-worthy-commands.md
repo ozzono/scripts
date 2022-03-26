@@ -100,3 +100,13 @@ $ dconf load / < dconf-settings.ini # imports gnome profile settings from file
 
 ## gnome extensions enable/disable command
 > gnome-extensions enable $(gnome-extensions list|grep corner)  
+
+
+## Configure ZSH
+```shell
+# install zsh
+$ sudo apt install zsh -y
+# add themes and templates
+$ sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+```
+Once added themes and templates it's possible to customize the themes.
