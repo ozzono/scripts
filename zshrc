@@ -124,9 +124,9 @@ else
 fi
 
 $HOME/scripts/sshfs.sh home@192.168.1.50
+$HOME/scripts/refresh_corner.sh
 
-export PATH=$PATH:$HOME/go/bin
-export DISPLAY=":0.0"
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH/$HOME/go/bin
+# export DISPLAY=":0.0"
 date +"%Y-%m-%d %H:%M:%S $(xhost +)"
