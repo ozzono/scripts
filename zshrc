@@ -123,6 +123,8 @@ else
     date +"%Y-%m-%d %H:%M:%S battery alert already running"
 fi
 
+$HOME/scripts/sshfs.sh home@192.168.1.50
+
 export PATH=$PATH:$HOME/go/bin
 export DISPLAY=":0.0"
 date +"%Y-%m-%d %H:%M:%S $(xhost +)"
