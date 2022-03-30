@@ -125,6 +125,7 @@ fi
 
 $HOME/scripts/sshfs.sh home@192.168.1.50
 $HOME/scripts/refresh_corner.sh
+$HOME/scripts/watch-rpi.sh
 
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH/$HOME/go/bin

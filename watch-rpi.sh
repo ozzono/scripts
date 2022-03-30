@@ -1,16 +1,16 @@
 #!/bin/bash
 watchpi(){
     while true ; do 
-    rpi=$(sudo nmap -sP -n 192.168.1.0/24|grep Raspberry|wc -l)
-    if [ $rpi = "0" ]; then
-    # if ping -c 1 raspberrypi.local > /dev/null ; then 
-        a=$(date +"%Y-%m-%d %H:%M:%S rpi node disconnected")
-        notify-send "$a"
-        sleep 30
-    else 
-        date +"%Y-%m-%d %H:%M:%S rpi connected"
-        sleep 60
-    fi
+        rpi=$(sudo nmap -sP -n 192.168.1.0/24|grep Raspberry|wc -l)
+        if [ $rpi = "0" ]; then
+        # if ping -c 1 raspberrypi.local > /dev/null ; then 
+            a=$(date +"%Y-%m-%d %H:%M:%S rpi node disconnected")
+            notify-send "$a"
+            sleep 30
+        else 
+            date +"%Y-%m-%d %H:%M:%S rpi connected"
+            sleep 60
+        fi
     done
 }
 
