@@ -123,6 +123,8 @@ else
     date +"%Y-%m-%d %H:%M:%S battery alert already running"
 fi
 
+screen -wipe
+
 $HOME/scripts/sshfs.sh home@192.168.1.50
 $HOME/scripts/refresh_corner.sh
 $HOME/scripts/watch-rpi.sh
