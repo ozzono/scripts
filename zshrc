@@ -100,6 +100,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+screen -wipe
+
 
 if [ -f ~/.zsh_aliases ]; then
     date +"%Y-%m-%d %H:%M:%S loading aliases"
@@ -123,7 +125,6 @@ else
     date +"%Y-%m-%d %H:%M:%S battery alert already running"
 fi
 
-screen -wipe
 
 $HOME/scripts/sshfs.sh home@192.168.1.50
 $HOME/scripts/refresh_corner.sh
