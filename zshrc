@@ -100,7 +100,14 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-screen -wipe
+
+dead_screens=$(screen -ls |grep "???"|wc -l)
+
+if [ $dead_screens != "0" ]; then
+    date +"%Y-%m-%d %H:%M:%S dead screens: $dead_screens dead screens"
+    screen -wipe
+fi
+# screen -wipe
 
 
 if [ -f ~/.zsh_aliases ]; then
@@ -130,7 +137,7 @@ $HOME/scripts/sshfs.sh home@192.168.1.50
 $HOME/scripts/refresh_corner.sh
 $HOME/scripts/watch-rpi.sh
 
+export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH/$HOME/go/bin
 # export DISPLAY=":0.0"
 date +"%Y-%m-%d %H:%M:%S $(xhost +)"

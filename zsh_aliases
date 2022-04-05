@@ -2,9 +2,9 @@ rm-dangling(){
     dangling=$(docker images -f dangling=true -q)
     if [ -z "$dangling" ]
     then
-        echo "\$rm-dangling: no zombie containers around"
+        date +"%Y-%m-%d %H:%M:%S rm-dangling: no zombie containers around"
     else
-        echo "\$rm-dangling: some zombie containers around"
+        date +"%Y-%m-%d %H:%M:%S rm-dangling: some zombie containers around"
         docker rmi $(docker images -f dangling=true -q) --force
     fi
 }
@@ -17,30 +17,30 @@ foxkill(){
     foxes=$(pidof firefox)
     if [ -z "$foxes" ]
     then
-        echo "\$foxkill: no foxes walking around"
+        date +"%Y-%m-%d %H:%M:%S foxkill: no foxes walking around"
     else
-        echo "\$foxkill: poor litle foxes"
+        date +"%Y-%m-%d %H:%M:%S foxkill: poor litle foxes"
         sudo kill $(pidof firefox)
     fi
 }
 
 reb(){
     dockkill
-    echo "\$reb: rebooting"
+    date +"%Y-%m-%d %H:%M:%S reb: rebooting"
     sudo reboot;
 }
 
 shut(){
     dockkill
-    echo "\$shut: shutting down"
+    date +"%Y-%m-%d %H:%M:%S shut: shutting down"
     sudo shutdown now -h;
 }
 
 dockkill(){
-    echo "\$dockkill: killing all docker containers"
+    date +"%Y-%m-%d %H:%M:%S dockkill: killing all docker containers"
     d=$(docker ps -a -q|grep -v "firedock")
     if [[ -z "$d"  ]]; then
-        echo "\$dockkill: no docker containers running"
+        date +"%Y-%m-%d %H:%M:%S dockkill: no docker containers running"
     else
         sudo docker stop $(docker ps -a -q|grep -v "firedock") && sudo docker rm $(docker ps -a -q|grep -v "firedock");
     fi
@@ -51,15 +51,15 @@ firedock(){
     all_foxes=$(docker ps -a |grep firedock|wc -l)
 
     if [ $all_foxes = "1" ]; then
-            echo "\$firedock: $all_foxes stance(s)"
+            date +"%Y-%m-%d %H:%M:%S firedock: $all_foxes stance(s)"
         if [ $running_foxes = "1" ]; then
-            echo "\$firedock: stance is already running"
+            date +"%Y-%m-%d %H:%M:%S firedock: stance is already running"
         else
-            echo "\$firedock: restarting stopped firedock"
+            date +"%Y-%m-%d %H:%M:%S firedock: restarting stopped firedock"
             docker start firedock
         fi
     else
-        echo "\$firedock: starting new firedock"
+        date +"%Y-%m-%d %H:%M:%S firedock: starting new firedock"
         docker run -it -e DISPLAY=$DISPLAY --name firedock -v /tmp/.X11-unix/:/tmp/.X11-unix --net=host -d firedock
 
     fi
