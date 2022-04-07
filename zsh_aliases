@@ -61,7 +61,6 @@ firedock(){
     else
         date +"%Y-%m-%d %H:%M:%S firedock: starting new firedock"
         docker run -it -e DISPLAY=$DISPLAY --name firedock -v /tmp/.X11-unix/:/tmp/.X11-unix --net=host -d firedock
-
     fi
 }
 
