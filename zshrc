@@ -141,3 +141,4 @@ export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:/usr/local/go/bin
 # export DISPLAY=":0.0"
 date +"%Y-%m-%d %H:%M:%S $(xhost +)"
+firedock

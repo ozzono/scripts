@@ -60,8 +60,13 @@ firedock(){
         fi
     else
         date +"%Y-%m-%d %H:%M:%S firedock: starting new firedock"
-        docker run -it -e DISPLAY=$DISPLAY --name firedock -v /tmp/.X11-unix/:/tmp/.X11-unix --net=host -d firedock
+        docker run -it -e DISPLAY=$DISPLAY --name firedock -v /tmp/.X11-unix/:/tmp/.X11-unix -v /home/hugo/Downloads:/home/developer/Downloads --net=host -d firedock
     fi
+}
+
+firedock-sync(){
+    docker cp firedock:/home/developer/Downloads $HOME/Downloads/firedock
+    docker cp $HOME/Downloads/firedock firedock:/home/developer/Downloads
 }
 
 # utilities for the lazy
