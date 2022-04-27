@@ -66,7 +66,14 @@ firedock(){
 
 firedock-sync(){
     docker cp firedock:/home/developer/Downloads $HOME/Downloads/firedock
+    date +"%Y-%m-%d %H:%M:%S firedock-sync: sunc from firedock to local"
+    mv $HOME/Downloads/firedock/Downloads/* $HOME/Downloads/firedock/.
+    rm -rf $HOME/Downloads/firedock/Downloads
+    date +"%Y-%m-%d %H:%M:%S firedock-sync: removed repeated local files"
     docker cp $HOME/Downloads/firedock firedock:/home/developer/Downloads
+    date +"%Y-%m-%d %H:%M:%S firedock-sync: sunc from local to firedock"
+    docker exec -u 0 -it firedock rm -rf /home/developer/Downloads/firedock
+    date +"%Y-%m-%d %H:%M:%S firedock-sync: removed repeated firedock files"
 }
 
 # utilities for the lazy
