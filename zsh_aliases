@@ -86,8 +86,8 @@ alias go-snippets="cd $HOME/Projects/go-snippets"
 alias rbind="bind '\"\e[A\":history-search-backward' && bind '\"\e[B\":history-search-forward'"
 alias realias="code $HOME/.zsh_aliases"
 alias realias_custom="code $HOME/.zsh_specific_aliases"
-alias home-server="ssh home@192.168.1.50"
-alias dev-server="ssh dev@192.168.1.50"
+alias home-server="ssh home@192.168.2.50"
+alias dev-server="ssh dev@192.168.2.50"
 alias lsdisk='lsblk -o name,mountpoint,label,size,fstype,uuid | egrep -v "^loop|zram"'
 alias kscreen="screen -XS $1 quit"
 alias vetest="go vet ./... && go test -v"
@@ -117,6 +117,7 @@ alias brightup="xdotool key XF86MonBrightnessUp"
 alias brightdown="xdotool key XF86MonBrightnessDown"
 alias apt="apt-fast"
 alias apt-search="apt-cache search"
+alias dk-ls="docker images --format \"{{.ID}}\t{{.Size}}\t{{.Repository}}\" | sort -k 2 -h"
 
 ## unused aliases
 # alias gocmd="go run /home/hugo/Projects/snippets/go-snippets/gocmd.go"
