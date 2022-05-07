@@ -97,7 +97,7 @@ alias ifconf="ifconfig wlp1s0"
 alias newtab="terminator --new-tab && exit"
 alias c="xclip -selection clipboard"
 alias refresh-corners="gnome-extensions disable custom-hot-corners@janrunx.gmail.com && gnome-extensions enable custom-hot-corners@janrunx.gmail.com"
-alias lsnw="sudo nmap -sP -n 192.168.1.0/24"
+alias lsnw="sudo nmap -sP -n 192.168.2.0/24"
 alias rasp="sudo $HOME/scripts/sshtomac.sh pi DC:A6:32:53:B9:2F $HOME"
 alias g="git"
 
