@@ -65,22 +65,27 @@ firedock(){
 }
 
 firedock-sync(){
-    docker cp firedock:/home/developer/Downloads $HOME/Downloads/firedock
-    date +"%Y-%m-%d %H:%M:%S firedock-sync: sunc from firedock to local"
+    date +"%Y-%m-%d %H:%M:%S firedock-sync: starting synchronization"
+    # rm -rf $HOME/Downloads/firedock && mkdir $HOME/Downloads/firedock
+    docker cp firedock:/home/developer/Downloads $HOME/Downloads/firedock && date +"%Y-%m-%d %H:%M:%S firedock-sync: sunc from firedock to local"
     mv $HOME/Downloads/firedock/Downloads/* $HOME/Downloads/firedock/.
     rm -rf $HOME/Downloads/firedock/Downloads
-    date +"%Y-%m-%d %H:%M:%S firedock-sync: removed repeated local files"
-    docker cp $HOME/Downloads/firedock firedock:/home/developer/Downloads
-    date +"%Y-%m-%d %H:%M:%S firedock-sync: sunc from local to firedock"
-    docker exec -u 0 -it firedock rm -rf /home/developer/Downloads/firedock
-    date +"%Y-%m-%d %H:%M:%S firedock-sync: removed repeated firedock files"
+    date +"%Y-%m-%d %H:%M:%S firedock-sync: properly placed host files"
+    
+    docker cp $HOME/Downloads/firedock firedock:/home/developer/tmp-dl && \
+    date +"%Y-%m-%d %H:%M:%S firedock-sync: sunc from local to firedock" && \
+    docker exec -u 0 -it firedock bash /home/developer/tmp-dl.sh && \
+    date +"%Y-%m-%d %H:%M:%S firedock-sync: removed container repeated files"
 }
 
 # utilities for the lazy
+alias firedock-bash="docker exec -it firedock bash"
+alias firedock-root="docker exec -it -u 0 firedock bash"
 alias rset="source $HOME/.zshrc"
 alias suuu="screen -dmS suuu bash -c 'clear && clear && sudo apt-fast update && sudo apt-fast upgrade -y && sudo $HOME/scripts/clean_snap.sh && exit' && screen -r suuu"
 alias psef="ps -ef |grep $1"
 alias cdscripts="cd $HOME/scripts"
+alias cdobsidian="cd $HOME/Projects/obsidian"
 alias cprojects="cd $HOME/Projects"
 alias go-snippets="cd $HOME/Projects/go-snippets"
 alias rbind="bind '\"\e[A\":history-search-backward' && bind '\"\e[B\":history-search-forward'"

@@ -124,14 +124,15 @@ if [[ -v VSCODE_WS ]] && [[ "$VSCODE_WS" != '${workspaceFolder}' ]]; then
     alias cd="HOME=\"${VSCODE_WS}\" cd"
 fi
 
-btrAlert=$(screen -ls|grep battery-alert|wc -l)
-if [ $btrAlert != "1" ]; then
-    date +"%Y-%m-%d %H:%M:%S starting battery alert"
-    screen -dmS battery-alert bash -c "$HOME/Projects/go-snippets/battery-alert/battery-alert -log-path $HOME/.logs/battery-alert.log"
-else
-    date +"%Y-%m-%d %H:%M:%S battery alert already running"
-fi
+# btrAlert=$(screen -ls|grep battery-alert|wc -l)
+# if [ $btrAlert != "1" ]; then
+#     date +"%Y-%m-%d %H:%M:%S starting battery alert"
+#     screen -dmS battery-alert bash -c "$HOME/Projects/go-snippets/battery-alert/battery-alert -log-path $HOME/.logs/battery-alert.log"
+# else
+#     date +"%Y-%m-%d %H:%M:%S battery alert already running"
+# fi
 
+firedock
 
 $HOME/scripts/sshfs.sh home@192.168.2.50
 $HOME/scripts/refresh_corner.sh
@@ -139,6 +140,6 @@ $HOME/scripts/watch-rpi.sh
 
 export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$HOME/Android/Sdk/emulator
 # export DISPLAY=":0.0"
 date +"%Y-%m-%d %H:%M:%S $(xhost +)"
-firedock
