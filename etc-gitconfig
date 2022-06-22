@@ -8,4 +8,3 @@
 	c = !git commit -m
 	sr = !git reset --soft HEAD~1
 	ac = !git add . && git commit -m
-
