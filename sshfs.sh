@@ -5,9 +5,11 @@ yoda2="$HOME/external/yoda2"
 mounted=$(mount -t fuse.sshfs)
 
 ip=`echo $1|awk -F '[@]' '{print $2}'`
+date +"%Y-%m-%d %H:%M:%S looking for $ip"
 fping -c1 -t300 $ip 2>/dev/null 1>/dev/null
 if [ "$?" = 0 ]
 then
+    date +"%Y-%m-%d %H:%M:%S $ip found"
 
     if [[ $mounted == *$yoda1* ]]; then
         date +"%Y-%m-%d %H:%M:%S yoda1 already mounted"
@@ -23,5 +25,5 @@ then
         sshfs $1:/data/part2 $HOME/external/yoda2 && date +"%Y-%m-%d %H:%M:%S successfully mounted yoda2"
     fi
 else
-    date +"%Y-%m-%d %H:%M:%S $ip Host not found"
+    date +"%Y-%m-%d %H:%M:%S $ip not found"
 fi
