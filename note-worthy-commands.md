@@ -108,7 +108,7 @@ dconf load / < dconf-settings.ini # imports gnome profile settings from file
 
 ```shell
 # install zsh
-$ sudo apt install zsh -y
+$ sudo apt install zsh wget git -y
 # add themes and templates
 $ sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 ```
