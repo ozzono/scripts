@@ -71,7 +71,7 @@ firedock-sync(){
     mv $HOME/Downloads/firedock/Downloads/* $HOME/Downloads/firedock/.
     rm -rf $HOME/Downloads/firedock/Downloads
     date +"%Y-%m-%d %H:%M:%S firedock-sync: properly placed host files"
-    
+
     docker cp $HOME/Downloads/firedock firedock:/home/developer/tmp-dl && \
     date +"%Y-%m-%d %H:%M:%S firedock-sync: sunc from local to firedock" && \
     docker exec -u 0 -it firedock bash /home/developer/tmp-dl.sh && \
@@ -114,6 +114,7 @@ alias cd..="cd .."
 alias dfh='df -h | grep -v "loop\|SWAP"'
 
 # general utilities
+alias kubectl="minikube kubectl --"
 alias cl="clear && clear && fortune"
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
