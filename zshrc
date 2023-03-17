@@ -113,6 +113,7 @@ fi
 if [ -f ~/.zsh_aliases ]; then
     date +"%Y-%m-%d %H:%M:%S loading aliases"
     . ~/.zsh_aliases
+    (pobs &>/dev/null &)
 fi
 
 if [ -f ~/.zsh_custom ]; then
@@ -132,14 +133,20 @@ fi
 #     date +"%Y-%m-%d %H:%M:%S battery alert already running"
 # fi
 
-firedock
+# firedock
 
-$HOME/scripts/sshfs.sh home@192.168.2.50
-$HOME/scripts/refresh_corner.sh
-$HOME/scripts/watch-rpi.sh
+$HOME/scripts/sshfs.sh home@192.168.15.50
+# $HOME/scripts/refresh_corner.sh
+# $HOME/scripts/watch-rpi.sh
 
 export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$HOME/Android/Sdk/emulator
 # export DISPLAY=":0.0"
-date +"%Y-%m-%d %H:%M:%S $(xhost +)"
+# date +"%Y-%m-%d %H:%M:%S $(xhost +)"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/hugo/.google-cloud-sdk/path.zsh.inc' ]; then . '/home/hugo/.google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/hugo/.google-cloud-sdk/completion.zsh.inc' ]; then . '/home/hugo/.google-cloud-sdk/completion.zsh.inc'; fi
