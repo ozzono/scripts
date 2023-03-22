@@ -1,3 +1,29 @@
+modinit(){
+    go mod init $1
+    go mod tidy
+}
+
+mvcurr(){
+    cd -P .
+    mv "$PWD" "${PWD%/*}/$1"
+    cd ../$1
+}
+
+mksibling(){
+    cd -P .
+    mkdir ${PWD%/*}/$1
+    cd ${PWD%/*}/$1
+}
+
+pobs(){
+    date +"%Y-%m-%d %H:%M:%S updating obsidian data"
+    cd $HOME/Documents/obsidian;
+    g pull > /dev/null 2>&1
+    g pobs > /dev/null 2>&1
+    g push > /dev/null 2>&1
+    cd - > /dev/null 2>&1
+}
+
 rm-dangling(){
     dangling=$(docker images -f dangling=true -q)
     if [ -z "$dangling" ]
@@ -10,31 +36,39 @@ rm-dangling(){
 }
 
 yoda-unmount(){
-    mount -l -t fuse.sshfs | awk -F " " '{print "fusermount -u " $3}' | bash
+    # mount -l -t fuse.sshfs | awk -F " " '{print "fusermount -u " $3}' | bash
+    sudo umount -l ~/external/yoda1
+    sudo umount -l ~/external/yoda2
 }
 
-foxkill(){
-    foxes=$(pidof firefox)
-    if [ -z "$foxes" ]
-    then
-        date +"%Y-%m-%d %H:%M:%S foxkill: no foxes walking around"
-    else
-        date +"%Y-%m-%d %H:%M:%S foxkill: poor litle foxes"
-        sudo kill $(pidof firefox)
-    fi
+# foxkill(){
+#     foxes=$(pidof firefox)
+#     if [ -z "$foxes" ]
+#     then
+#         date +"%Y-%m-%d %H:%M:%S foxkill: no foxes walking around"
+#     else
+#         date +"%Y-%m-%d %H:%M:%S foxkill: poor litle foxes"
+#         sudo kill $(pidof firefox)
+#     fi
+# }
+
+# reb(){
+#     dockkill
+#     date +"%Y-%m-%d %H:%M:%S reb: rebooting"
+#     sudo reboot;
+# }
+
+# shut(){
+#     dockkill
+#     date +"%Y-%m-%d %H:%M:%S shut: shutting down"
+#     sudo shutdown now -h;
+# }
+
+docker-kill(){
+    date +"%Y-%m-%d %H:%M:%S stopping $(docker stop $@)"
+    date +"%Y-%m-%d %H:%M:%S removing $(docker rm $@)"
 }
 
-reb(){
-    dockkill
-    date +"%Y-%m-%d %H:%M:%S reb: rebooting"
-    sudo reboot;
-}
-
-shut(){
-    dockkill
-    date +"%Y-%m-%d %H:%M:%S shut: shutting down"
-    sudo shutdown now -h;
-}
 
 dockkill(){
     date +"%Y-%m-%d %H:%M:%S dockkill: killing all docker containers"
@@ -60,38 +94,42 @@ firedock(){
         fi
     else
         date +"%Y-%m-%d %H:%M:%S firedock: starting new firedock"
-        docker run -it -e DISPLAY=$DISPLAY --name firedock -v /tmp/.X11-unix/:/tmp/.X11-unix -v /home/hugo/Downloads:/home/developer/Downloads --net=host -d firedock
+        # docker run -it -e DISPLAY=$DISPLAY --name firedock -v /tmp/.X11-unix/:/tmp/.X11-unix -v /home/hugo/Downloads:/home/developer/downloads --net=host -d firedock
+        docker run -it -e DISPLAY=$DISPLAY --name firedock -v /tmp/.X11-unix/:/tmp/.X11-unix -v ~/Downloads/firedock/:/home/developer/downloads --net=host -d firedock
     fi
 }
 
-firedock-sync(){
-    date +"%Y-%m-%d %H:%M:%S firedock-sync: starting synchronization"
-    # rm -rf $HOME/Downloads/firedock && mkdir $HOME/Downloads/firedock
-    docker cp firedock:/home/developer/Downloads $HOME/Downloads/firedock && date +"%Y-%m-%d %H:%M:%S firedock-sync: sunc from firedock to local"
-    mv $HOME/Downloads/firedock/Downloads/* $HOME/Downloads/firedock/.
-    rm -rf $HOME/Downloads/firedock/Downloads
-    date +"%Y-%m-%d %H:%M:%S firedock-sync: properly placed host files"
-
-    docker cp $HOME/Downloads/firedock firedock:/home/developer/tmp-dl && \
-    date +"%Y-%m-%d %H:%M:%S firedock-sync: sunc from local to firedock" && \
-    docker exec -u 0 -it firedock bash /home/developer/tmp-dl.sh && \
-    date +"%Y-%m-%d %H:%M:%S firedock-sync: removed container repeated files"
-}
+# firedock-sync(){
+#     date +"%Y-%m-%d %H:%M:%S firedock-sync: starting synchronization"
+#     # rm -rf $HOME/Downloads/firedock && mkdir $HOME/Downloads/firedock
+#     docker cp firedock:/home/developer/Downloads $HOME/Downloads/firedock && date +"%Y-%m-%d %H:%M:%S firedock-sync: sunc from firedock to local"
+#     mv $HOME/Downloads/firedock/Downloads/* $HOME/Downloads/firedock/.
+#     rm -rf $HOME/Downloads/firedock/Downloads
+#     date +"%Y-%m-%d %H:%M:%S firedock-sync: properly placed host files"
+    
+#     docker cp $HOME/Downloads/firedock firedock:/home/developer/tmp-dl && \
+#     date +"%Y-%m-%d %H:%M:%S firedock-sync: sunc from local to firedock" && \
+#     docker exec -u 0 -it firedock bash /home/developer/tmp-dl.sh && \
+#     date +"%Y-%m-%d %H:%M:%S firedock-sync: removed container repeated files"
+# }
 
 # utilities for the lazy
 alias firedock-bash="docker exec -it firedock bash"
 alias firedock-root="docker exec -it -u 0 firedock bash"
+alias firedock-stats="docker stats firedock"
 alias rset="source $HOME/.zshrc"
 alias suuu="screen -dmS suuu bash -c 'clear && clear && sudo apt-fast update && sudo apt-fast upgrade -y && sudo $HOME/scripts/clean_snap.sh && exit' && screen -r suuu"
 alias psef="ps -ef |grep $1"
 alias cdscripts="cd $HOME/scripts"
-alias cdobsidian="cd $HOME/Projects/obsidian"
+alias cdobsidian="cd $HOME/Documents/obsidian"
 alias cprojects="cd $HOME/Projects"
+alias cpersonal="cd $HOME/Projects/personal"
 alias go-snippets="cd $HOME/Projects/go-snippets"
 alias rbind="bind '\"\e[A\":history-search-backward' && bind '\"\e[B\":history-search-forward'"
 alias realias="code $HOME/.zsh_aliases"
 alias realias_custom="code $HOME/.zsh_specific_aliases"
-alias home-server="ssh home@192.168.2.50"
+alias home-server="ssh home@192.168.15.50"
+alias ss-vps="ssh root@191.252.193.196"
 alias dev-server="ssh dev@192.168.2.50"
 alias lsdisk='lsblk -o name,mountpoint,label,size,fstype,uuid | egrep -v "^loop|zram"'
 alias kscreen="screen -XS $1 quit"
@@ -114,7 +152,8 @@ alias cd..="cd .."
 alias dfh='df -h | grep -v "loop\|SWAP"'
 
 # general utilities
-alias kubectl="minikube kubectl --"
+alias now='date +"%Y-%m-%d %H:%M:%S"'
+alias today='date +"%Y-%m-%d"'
 alias cl="clear && clear && fortune"
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
