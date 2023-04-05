@@ -140,3 +140,6 @@ gource \
     --output-framerate 30 \
     | ffmpeg -y -r 30 -f image2pipe -vcodec ppm -i - -b 65536K movie.mp4
 ```
+
+## Show remote git repository name
+`git config --local remote.origin.url|sed -n 's#.*/\([^.]*\)\.git#\1#p'`
