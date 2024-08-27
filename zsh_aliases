@@ -81,6 +81,9 @@ dockkill(){
 }
 
 firedock(){
+    sudo xhost +local:docker
+    sudo xhost +
+
     running_foxes=$(docker ps -a --filter "status=running" |grep firedock|wc -l)
     all_foxes=$(docker ps -a |grep firedock|wc -l)
 
@@ -95,25 +98,26 @@ firedock(){
     else
         date +"%Y-%m-%d %H:%M:%S firedock: starting new firedock"
         # docker run -it -e DISPLAY=$DISPLAY --name firedock -v /tmp/.X11-unix/:/tmp/.X11-unix -v /home/hugo/Downloads:/home/developer/downloads --net=host -d firedock
-        docker run -it -e DISPLAY=$DISPLAY --name firedock -v /tmp/.X11-unix/:/tmp/.X11-unix -v ~/Downloads/firedock/:/home/developer/downloads --net=host -d firedock
+        # docker run -it -e DISPLAY=$DISPLAY --name firedock -v /tmp/.X11-unix/:/tmp/.X11-unix -v ~/Downloads/firedock/:/home/developer/downloads --net=host -d firedock
+        docker run -it -e DISPLAY=$DISPLAY --name firedock -v /tmp/.X11-unix/:/tmp/.X11-unix -v /home/hugo/Downloads/firedock:/home/Downloads --net=host -d firedock
     fi
 }
 
-# firedock-sync(){
-#     date +"%Y-%m-%d %H:%M:%S firedock-sync: starting synchronization"
-#     # rm -rf $HOME/Downloads/firedock && mkdir $HOME/Downloads/firedock
-#     docker cp firedock:/home/developer/Downloads $HOME/Downloads/firedock && date +"%Y-%m-%d %H:%M:%S firedock-sync: sunc from firedock to local"
-#     mv $HOME/Downloads/firedock/Downloads/* $HOME/Downloads/firedock/.
-#     rm -rf $HOME/Downloads/firedock/Downloads
-#     date +"%Y-%m-%d %H:%M:%S firedock-sync: properly placed host files"
+firedock-sync(){
+    date +"%Y-%m-%d %H:%M:%S firedock-sync: starting synchronization"
+    rm -rf $HOME/Downloads/firedock && mkdir $HOME/Downloads/firedock
+    docker cp firedock:/root/Downloads $HOME/Downloads/firedock && date +"%Y-%m-%d %H:%M:%S firedock-sync: sunc from firedock to local"
+    mv $HOME/Downloads/firedock/Downloads/* $HOME/Downloads/firedock/.
+    date +"%Y-%m-%d %H:%M:%S firedock-sync: properly placed host files"
     
 #     docker cp $HOME/Downloads/firedock firedock:/home/developer/tmp-dl && \
 #     date +"%Y-%m-%d %H:%M:%S firedock-sync: sunc from local to firedock" && \
 #     docker exec -u 0 -it firedock bash /home/developer/tmp-dl.sh && \
 #     date +"%Y-%m-%d %H:%M:%S firedock-sync: removed container repeated files"
-# }
+}
 
 # utilities for the lazy
+alias gmt="go mod tidy"
 alias firedock-bash="docker exec -it firedock bash"
 alias firedock-root="docker exec -it -u 0 firedock bash"
 alias firedock-stats="docker stats firedock"
@@ -154,7 +158,7 @@ alias dfh='df -h | grep -v "loop\|SWAP"'
 # general utilities
 alias now='date +"%Y-%m-%d %H:%M:%S"'
 alias today='date +"%Y-%m-%d"'
-alias cl="clear && clear && fortune"
+alias cl="clear && clear"
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
 alias g="git"
@@ -163,6 +167,7 @@ alias brightdown="xdotool key XF86MonBrightnessDown"
 alias apt="apt-fast"
 alias apt-search="apt-cache search"
 alias dk-ls="docker images --format \"{{.ID}}\t{{.Size}}\t{{.Repository}}\" | sort -k 2 -h"
+alias code="codium"
 
 ## unused aliases
 # alias gocmd="go run /home/hugo/Projects/snippets/go-snippets/gocmd.go"
