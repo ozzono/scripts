@@ -143,3 +143,6 @@ gource \
 
 ## Show remote git repository name
 `git config --local remote.origin.url|sed -n 's#.*/\([^.]*\)\.git#\1#p'`
+
+## Makes firefox pdf reader go dark
+> viewer.style = 'filter: grayscale(1) invert(1) sepia(1)'
