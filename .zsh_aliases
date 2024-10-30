@@ -1,4 +1,4 @@
-modinit(){
+gmi(){
     go mod init $1
     go mod tidy
 }
@@ -77,20 +77,34 @@ yoda-unmount(){
 # }
 
 dk-kill(){
-    date +"%Y-%m-%d %H:%M:%S stopping $(docker stop $@| tr '\n' ' ')"
-    date +"%Y-%m-%d %H:%M:%S removing $(docker rm $@| tr '\n' ' ')"
+    date +"%Y-%m-%d %H:%M:%S removing $@"
+    docker stop "$@"> /dev/null 2>&1
+    docker rm "$@"> /dev/null 2>&1
 }
-
 
 dk-killall(){
-    date +"%Y-%m-%d %H:%M:%S dockkill: killing all docker containers"
-    d=$(docker ps -a -q|grep -v "firedock")
-    if [[ -z "$d"  ]]; then
-        date +"%Y-%m-%d %H:%M:%S dockkill: no docker containers running"
-    else
-        sudo docker stop $(docker ps -a -q|grep -v "firedock") && sudo docker rm $(docker ps -a -q|grep -v "firedock");
+source=$(docker ps -a --format "id:{{.ID}} {{.Names}}"|grep id|grep -v firedock)
+while IFS= read -r line; do
+    if [[ $line =~ ^id: ]]; then
+        id=$(echo "$line" | sed -e 's/.*id://'| awk -F' ' '{print $1}')
+        
+        date +"%Y-%m-%d %H:%M:%S removing $line"
+        docker stop "$id"> /dev/null 2>&1
+        docker rm "$id"> /dev/null 2>&1
     fi
+done <<< "$source"
+
 }
+
+# dk-killall(){
+#     date +"%Y-%m-%d %H:%M:%S dockkill: killing all docker containers"
+#     d=$(docker ps -a -q|grep -v "firedock")
+#     if [[ -z "$d"  ]]; then
+#         date +"%Y-%m-%d %H:%M:%S dockkill: no docker containers running"
+#     else
+#         sudo docker stop $(docker ps -a -q|grep -v "firedock") && sudo docker rm $(docker ps -a -q|grep -v "firedock");
+#     fi
+# }
 
 firedock(){
     sudo xhost +local:docker
@@ -175,6 +189,7 @@ alias cd..="cd .."
 alias dfh='df -h | grep -v "loop\|SWAP"'
 
 # general utilities
+alias fortune="/usr/games/fortune"
 alias now='date +"%Y-%m-%d %H:%M:%S"'
 alias today='date +"%Y-%m-%d"'
 alias cl="clear && clear"
