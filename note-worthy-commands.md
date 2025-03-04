@@ -146,3 +146,29 @@ gource \
 
 ## Makes firefox pdf reader go dark
 > viewer.style = 'filter: grayscale(1) invert(1) sepia(1)'
+
+
+## Umbrel requirements
+```bash
+sudo nala install -y\
+  docker-ce\
+  docker-ce-cli\
+  containerd.io\
+  docker-buildx-plugin\
+  docker-compose-pluginy\
+  avahi-daemon\
+  avahi-discover\
+  libnss-mdns\
+  fswatch\
+  jq\
+  rsync\
+  curl\
+  git\
+  gettext-base\
+  python3\
+  gnupg\
+  python3-pip\
+  libffi-dev\
+  yq\
+  docker-compose
+```
